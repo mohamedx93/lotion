@@ -1,10 +1,11 @@
 "use client";
-import { Button } from "@/components/ui/button";
-import { Spinner } from "@/components/ui/spinner";
-import { SignInButton } from "@clerk/clerk-react";
-import { useConvexAuth } from "convex/react";
+
 import { ArrowRight } from "lucide-react";
+import { Button } from "@/components/ui/button";
 import Link from "next/link";
+import { SignInButton } from "@clerk/clerk-react";
+import { Spinner } from "@/components/spinner";
+import { useConvexAuth } from "convex/react";
 
 const Heading = () => {
   const { isAuthenticated, isLoading } = useConvexAuth();
