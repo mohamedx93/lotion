@@ -275,6 +275,6 @@ export const removeCoverImage = mutation({
       coverImage: undefined,
     });
 
-    return document;
+    // return document;
   },
 });
