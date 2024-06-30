@@ -19,7 +19,7 @@ export const Trashbox = () => {
   const documents: Doc<"documents">[] | undefined = useQuery(
     api.documents.getTrash
   );
-  const restore = useMutation(api.documents.resotre);
+  const restore = useMutation(api.documents.restore);
   const remove = useMutation(api.documents.remove);
   const [search, setSearch] = useState("");
   const filteredDocuments = documents?.filter((document) => {
