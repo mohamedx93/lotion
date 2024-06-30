@@ -4,7 +4,7 @@ const MarketingLayout: React.FunctionComponent<{
   children: React.ReactNode;
 }> = ({ children }) => {
   return (
-    <div className="h-full dark:bg-[#1f1f1f]">
+    <div className="h-full dark:bg-neutral-900">
       <Navbar />
       <main className="h-full pt-40">{children}</main>
     </div>
