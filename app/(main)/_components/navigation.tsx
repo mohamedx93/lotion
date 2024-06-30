@@ -1,11 +1,5 @@
 "use client";
 
-import { cn } from "@/lib/utils";
-import {
-  Popover,
-  PopoverTrigger,
-  PopoverContent,
-} from "@/components/ui/popover";
 import {
   ChevronsLeft,
   MenuIcon,
@@ -15,22 +9,30 @@ import {
   Settings,
   Trash,
 } from "lucide-react";
-import { api } from "@/convex/_generated/api";
-import { Item } from "./item";
-import { toast } from "sonner";
-import { DocumentList } from "./document-list";
-import { Trashbox } from "./trash-box";
-import { useParams, usePathname } from "next/navigation";
 import { ElementRef, useEffect, useRef, useState } from "react";
-import { useMediaQuery } from "usehooks-ts";
-import { UserItem } from "./user-item";
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover";
 import { useMutation, useQuery } from "convex/react";
+import { useParams, usePathname, useRouter } from "next/navigation";
+
+import { DocumentList } from "./document-list";
+import { Item } from "./item";
+import { Navbar } from "./navbar";
+import { Trashbox } from "./trash-box";
+import { UserItem } from "./user-item";
+import { api } from "@/convex/_generated/api";
+import { cn } from "@/lib/utils";
+import { toast } from "sonner";
+import { useMediaQuery } from "usehooks-ts";
 import { useSearch } from "@/hooks/use-search";
 import { useSettings } from "@/hooks/use-settings";
-import { Navbar } from "./navbar";
 
 export const Navigation = () => {
   const pathname = usePathname();
+  const router = useRouter();
   const isMobile = useMediaQuery("(max-width:768px)");
   const search = useSearch();
   const settings = useSettings();
@@ -105,9 +107,10 @@ export const Navigation = () => {
       }, 300);
     }
   };
-
+  
   const handleCreate = () => {
-    const promise = create({ title: "Untitled" });
+    const promise = create({ title: "Untitled" })
+      .then((documentId)=>router.push(`/documents/${documentId}`));
     toast.promise(promise, {
       loading: "Creating a new note...",
       success: "New note created!",
